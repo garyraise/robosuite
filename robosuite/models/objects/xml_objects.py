@@ -297,3 +297,18 @@ class DoorObject(MujocoXMLObject):
         dic = super().important_sites
         dic.update({"handle": self.naming_prefix + "handle"})
         return dic
+
+
+class ChannelObject(MujocoXMLObject):
+    """
+    Milk carton object (used in PickPlace)
+    """
+
+    def __init__(self, name):
+        super().__init__(
+            xml_path_completion("objects/channel.xml"),
+            name=name,
+            joints=[],
+            obj_type="all",
+            duplicate_collision_geoms=False,
+        )

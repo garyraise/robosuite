@@ -1,0 +1,13 @@
+<mujoco model="channel">
+  <asset>
+        <mesh name="channel" file="meshes/channel.stl" />
+  </asset>
+  <worldbody>
+      <body>
+      <body name="object">
+            <geom type="mesh" contype="0" conaffinity="0" group="1" pos="0 0 0." quat="0 0 0 1" rgba="0.1 0.1 0.1 1" name="channel_visual" mesh="channel" />
+            <geom type="mesh" group="0" rgba="0.1 0.1 0.1 1" pos="0 0 0." quat="0 0 0 1" mesh="channel" name="channel_collision" />
+      </body>
+      </body>
+  </worldbody>
+</mujoco>

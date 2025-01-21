@@ -1,0 +1,54 @@
+<mujoco model="harmon bracket gripper">
+    <asset>
+        <mesh name="extender" file="meshes/harmon_bracket_gripper/extender.stl" />
+        <mesh name="gripper_body" file="meshes/harmon_bracket_gripper/bracket_gripper.stl" />
+        <mesh name="finger0" file="meshes/harmon_bracket_gripper/bracket_gripper_finger0.stl" />
+        <mesh name="finger1" file="meshes/harmon_bracket_gripper/bracket_gripper_finger1.stl" />
+        <mesh name="harmon_bracket" file="meshes/harmon_bracket_gripper/harmon_bracket.stl" />
+        <mesh name="bolt" file="meshes/harmon_bracket_gripper/bolt.stl" />
+    </asset>
+    <worldbody>
+        <body name="extender" pos="0 0 0" quat="0 0 0 1">
+            <site name="ft_frame" pos="0 0 0" size="0.01 0.01 0.01" rgba="1 0 0 1" type="sphere" group="1"/>
+            <geom pos="0 0 0." quat="0 0 0 1." type="mesh" mesh="extender" group="0" name="extender_mesh"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="1" pos="0 0 0." quat="0 0 0 1" rgba="0.1 0.1 0.1 1" name="extender_visual" mesh="extender" />
+            <geom type="mesh" group="0" rgba="0.1 0.1 0.1 1" pos="0 0 0." quat="0 0 0 1" mesh="extender" name="extender_collision" />
+            <body name="eef" pos="0 0.03647 0.180" quat="0 0 0.7071068 0.7071068">
+                <site name="grip_site" pos="0 0 0" size="0.01 0.01 0.01" rgba="1 0 0 0.5" type="sphere" group="1"/>
+                <site name="grip_site_cylinder" pos="0 0 0" size="0.005 10" rgba="0 1 0 0.3" type="cylinder" group="1"/>
+                <geom type="mesh" contype="0" conaffinity="0" group="1" pos="0 0 0." quat="0 0 0 1" rgba="0.1 0.1 0.1 1" name="gripper_visual" mesh="gripper_body" />
+                <geom type="mesh" group="0" rgba="0.1 0.1 0.1 1" pos="0 0 0." quat="0 0 0 1" mesh="gripper_body" name="gripper_collision" />
+                <site name="tip" pos="0 0 0.133" size="0.01 0.01 0.01" rgba="1 0 0 0.5" type="sphere" group="1"/>
+
+                <body name="finger0" pos="0 0 0" quat="0 0 0 1">
+                    <geom type="mesh" contype="0" conaffinity="0" group="1" pos="0 0 0." quat="0 0 0 1" rgba="0.1 0.1 0.1 1" name="finger0_visual" mesh="finger0" />
+                    <geom type="mesh" group="0" rgba="0.1 0.1 0.1 1" pos="0 0 0." quat="0 0 0 1" mesh="finger0" name="finger0_collision" />
+                </body>
+
+                <body name="finger1" pos="0 0 0" quat="0 0 0 1">
+                    <geom type="mesh" contype="0" conaffinity="0" group="1" pos="0 0 0." quat="0 0 0 1" rgba="0.1 0.1 0.1 1" name="finger1_visual" mesh="finger1" />
+                    <geom type="mesh" group="0" rgba="0.1 0.1 0.1 1" pos="0 0 0." quat="0 0 0 1" mesh="finger1" name="finger1_collision" />
+                </body>
+
+                <body name="harmon_bracket" pos="0.52 0. 0.05" quat="-0.7071068 0 0.7071068 0">
+                    <geom type="mesh" contype="0" conaffinity="0" group="1" pos="0 0 0." quat="0 0 0 1" rgba="0.1 0.1 0.1 1" name="harmon_bracket_visual" mesh="harmon_bracket" />
+                    <geom type="mesh" group="0" rgba="0.1 0.1 0.1 1" pos="0 0 0." quat="0 0 0 1" mesh="harmon_bracket" name="harmon_bracket_collision" />
+
+                    <body name="left_bolt" pos="0.103 -0.084 0.3775" quat="0.7071068 0 0.7071068 0">
+                        <geom type="mesh" contype="0" conaffinity="0" group="1" pos="0 0 0." quat="0 0 0 1" rgba="0.1 0.1 0.1 1" name="left_bolt_visual" mesh="bolt" />
+                        <geom type="mesh" group="0" rgba="0.1 0.1 0.1 1" pos="0 0 0." quat="0 0 0 1" mesh="bolt" name="left_bolt_collision" />
+                    </body>
+
+                    <body name="right_bolt" pos="0.103 -0.084 0.2" quat="0.7071068 0 0.7071068 0">
+                        <geom type="mesh" contype="0" conaffinity="0" group="1" pos="0 0 0." quat="0 0 0 1" rgba="0.1 0.1 0.1 1" name="right_bolt_visual" mesh="bolt" />
+                        <geom type="mesh" group="0" rgba="0.1 0.1 0.1 1" pos="0 0 0." quat="0 0 0 1" mesh="bolt" name="right_bolt_collision" />
+                    </body>
+                </body>
+            </body>
+        </body>
+    </worldbody>
+    <sensor>
+        <force name="force_ee" site="ft_frame"/>
+        <torque name="torque_ee" site="ft_frame"/>
+    </sensor>
+</mujoco>
